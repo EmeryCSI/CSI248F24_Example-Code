@@ -30,10 +30,30 @@ export default function App() {
     { id: "14", make: "Lexus", model: "ES", year: 2022, price: 48000 },
     { id: "15", make: "Acura", model: "TLX", year: 2023, price: 43000 },
   ]);
-
+  //function that adds a car to the the array
+  const addCar = (newCar) => {
+    console.log("App.js");
+    console.log(newCar);
+    //does this work?
+    //we cannot change state variables directly
+    //cars.push(newCar);
+    //what i need to pass to set cars is a new array
+    //containing everything from the previous array
+    //plus my new one
+    //we need make a new array add our new one then send
+    //the new array to setCars
+    // newCar.id = cars.length + 1;
+    // let newArray = [...cars, newCar];
+    // setCars(newArray);
+    //... = everything inside of
+    setCars((currentCars) => [
+      ...currentCars,
+      { ...newCar, id: cars.length + 1 },
+    ]);
+  };
   return (
     <View style={styles.container}>
-      <CarFormVariables></CarFormVariables>
+      <CarFormVariables addCar={addCar}></CarFormVariables>
       <CarList cars={cars} />
       <StatusBar style="auto" />
     </View>
