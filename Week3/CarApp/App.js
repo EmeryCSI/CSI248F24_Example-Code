@@ -1,7 +1,6 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
-//you have to import useState before you can use it
-import { useState } from "react";
+import React, { useState } from "react";
+import { StyleSheet, View, SafeAreaView } from "react-native";
+import CarFormObject from "./components/CarFormObject";
 import CarList from "./components/CarList";
 import CarFormVariables from "./components/CarFormVariables";
 
@@ -48,15 +47,15 @@ export default function App() {
     //... = everything inside of
     setCars((currentCars) => [
       ...currentCars,
-      { ...newCar, id: cars.length + 1 },
+      { ...newCar, id: (cars.length + 1).toString() },
     ]);
   };
   return (
-    <View style={styles.container}>
-      <CarFormVariables addCar={addCar}></CarFormVariables>
+    <SafeAreaView style={styles.container}>
+      <CarFormVariables addCar={addCar} />
+
       <CarList cars={cars} />
-      <StatusBar style="auto" />
-    </View>
+    </SafeAreaView>
   );
 }
 
@@ -64,7 +63,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    paddingTop: 20,
     paddingHorizontal: 20,
+    paddingTop: 20,
   },
 });

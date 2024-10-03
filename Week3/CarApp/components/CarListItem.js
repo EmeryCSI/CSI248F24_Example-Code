@@ -1,22 +1,22 @@
-import { StyleSheet, Text, View } from "react-native";
 import React from "react";
+import { View, Text, StyleSheet } from "react-native";
 
-export default function CarListItem({ car }) {
+const CarListItem = ({ car }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.make}>{car.make}</Text>
       <Text style={styles.model}>{car.model}</Text>
       <View style={styles.details}>
         <Text style={styles.year}>{car.year}</Text>
-        <Text style={styles.price}>{car.price}</Text>
+        <Text style={styles.price}>${car.price.toLocaleString()}</Text>
       </View>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "lightgray",
+    backgroundColor: "#f8f8f8",
     borderRadius: 8,
     padding: 16,
     marginBottom: 12,
@@ -38,15 +38,17 @@ const styles = StyleSheet.create({
   },
   details: {
     flexDirection: "row",
-    justifyContent: "space-around",
+    justifyContent: "space-between",
   },
   year: {
     fontSize: 14,
-    color: "blue",
+    color: "#777",
   },
   price: {
     fontSize: 14,
     fontWeight: "bold",
-    color: "red",
+    color: "#2c3e50",
   },
 });
+
+export default CarListItem;
