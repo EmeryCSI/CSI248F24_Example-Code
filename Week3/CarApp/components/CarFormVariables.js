@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TextInput } from "react-native";
+import { StyleSheet, Text, View, TextInput, Button } from "react-native";
 import React from "react";
 import { useState } from "react";
 
@@ -10,6 +10,9 @@ export default function CarFormVariables() {
   const [model, setModel] = useState("");
   const [year, setYear] = useState("");
   const [price, setPrice] = useState("");
+  const handleSubmit = () => {
+    console.log("Clicked the button");
+  };
   return (
     <View>
       {/* value is set to the state variable
@@ -34,6 +37,8 @@ export default function CarFormVariables() {
         onChangeText={setPrice}
         placeholder="Price"
       ></TextInput>
+      {/* Button to add the car to the list */}
+      <Button onPress={handleSubmit} title="Add Car"></Button>
     </View>
   );
 }
