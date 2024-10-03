@@ -12,10 +12,28 @@ export default function CarFormVariables() {
   const [price, setPrice] = useState("");
   return (
     <View>
-      <TextInput placeholder="Make"></TextInput>
-      <TextInput placeholder="Model"></TextInput>
-      <TextInput placeholder="Year"></TextInput>
-      <TextInput placeholder="Price"></TextInput>
+      {/* value is set to the state variable
+      onChangeText is set to the function for updating the state */}
+      <TextInput
+        value={make}
+        onChangeText={setMake}
+        placeholder="Make"
+      ></TextInput>
+      <TextInput
+        value={model}
+        onChangeText={setModel}
+        placeholder="Model"
+      ></TextInput>
+      <TextInput
+        value={year}
+        onChangeText={setYear}
+        placeholder="Year"
+      ></TextInput>
+      <TextInput
+        value={price}
+        onChangeText={setPrice}
+        placeholder="Price"
+      ></TextInput>
     </View>
   );
 }
