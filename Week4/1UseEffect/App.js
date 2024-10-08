@@ -2,12 +2,14 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 import IntroToEffect from "./components/IntroToEffect";
 import SimpleAPICall from "./components/SimpleAPICall";
+import BetterAPICall from "./components/BetterAPICall";
 
 export default function App() {
   return (
     <View style={styles.container}>
       {/* <IntroToEffect /> */}
-      <SimpleAPICall />
+      {/* <SimpleAPICall /> */}
+      <BetterAPICall />
       <StatusBar style="auto" />
     </View>
   );
