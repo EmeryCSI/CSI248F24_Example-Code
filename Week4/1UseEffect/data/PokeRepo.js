@@ -20,7 +20,8 @@ export const fetchPokemonList = async (limit = 10) => {
     if (!response.ok) {
       throw new Error("Failed to fetch pokemon");
     }
-    return await response.json();
+    const data = await response.json();
+    return data.results;
   } catch (error) {
     throw error;
   }
