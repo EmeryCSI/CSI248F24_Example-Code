@@ -86,8 +86,8 @@ export default function TimerScreen() {
       </View>
       <Text>{formatTime(secondsRemaining)}</Text>
       <Button title="Start Timer" onPress={startTimer} />
-      <Button title="Stop Timer" onPress={startTimer} />
-      <Button title="Reset Timer" onPress={startTimer} />
+      <Button title="Stop Timer" onPress={stopTimer} />
+      <Button title="Reset Timer" onPress={resetTimer} />
     </View>
   );
 }
