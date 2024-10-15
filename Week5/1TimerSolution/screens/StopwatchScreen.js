@@ -1,51 +1,75 @@
-import { StyleSheet, Text, View, Button } from "react-native";
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import { View, Text, Button } from "react-native";
 
-export default function StopwatchScreen() {
+const StopwatchScreen = () => {
+  // State variables to track stopwatch status and elapsed time
   const [isRunning, setIsRunning] = useState(false);
   const [elapsedTime, setElapsedTime] = useState(0);
-  //state and effect go inside of the function but before return statement
+
+  // useEffect hook to handle the stopwatch timer
   useEffect(() => {
     let interval;
+
+    // If the stopwatch is running, create an interval to update the time
     if (isRunning) {
       interval = setInterval(() => {
-        //some kind of elapsed time that we need
-        //update the ellapsed time by 10
+        // Update the elapsed time every 10 milliseconds
         setElapsedTime((prevTime) => prevTime + 10);
-      }, 10); // Update every 10ms for smooth animation
+      }, 10);
     }
-    return () => clearInterval(interval);
-  }, [isRunning]);
 
-  //function that starts the stopwatch
-  const startStopWatch = () => {
+    // Cleanup function to clear the interval when the component unmounts or when isRunning changes
+    return () => clearInterval(interval);
+  }, [isRunning]); // This effect runs whenever isRunning changes
+
+  // Function to start the stopwatch
+  const startStopwatch = () => {
     setIsRunning(true);
   };
-  const stopStopWatch = () => {
+
+  // Function to stop the stopwatch
+  const stopStopwatch = () => {
     setIsRunning(false);
   };
-  const resetStopWatch = () => {
+
+  // Function to reset the stopwatch
+  const resetStopwatch = () => {
     setIsRunning(false);
     setElapsedTime(0);
   };
+
+  // Function to format the elapsed time into minutes:seconds:milliseconds
   const formatTime = (time) => {
-    //convert millisecons to minutes, seconds
-    const minutes = Math.floor(time / 60000);
-    const seconds = Math.floor((time % 6000) / 1000);
-    const milliseconds = Math.floor(time / 10);
-    //need to format the hundredth of a millisecond
-    return `${minutes}:${seconds}:${milliseconds}`;
+    // Convert milliseconds to minutes, seconds, and remaining milliseconds
+    const minutes = Math.floor(time / 60000); // 60000 ms in a minute
+    const seconds = Math.floor((time % 60000) / 1000); // 1000 ms in a second
+    const milliseconds = Math.floor((time % 1000) / 10); // Only show 2 digits
+
+    // Create formatted strings, adding leading zeros if needed
+    const formattedMinutes = minutes.toString().padStart(2, "0");
+    const formattedSeconds = seconds.toString().padStart(2, "0");
+    const formattedMilliseconds = milliseconds.toString().padStart(2, "0");
+
+    // Combine the formatted strings
+    return `${formattedMinutes}:${formattedSeconds}:${formattedMilliseconds}`;
   };
+
+  // Render the stopwatch UI
   return (
-    <View>
-      <Text>StopwatchScreen</Text>
-      <Text>{formatTime(elapsedTime)}</Text>
-      <Button title="Start" onPress={startStopWatch}></Button>
-      <Button title="Stop" onPress={stopStopWatch}></Button>
-      <Button title="Reset" onPress={resetStopWatch}></Button>
+    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+      {/* Display the formatted elapsed time */}
+      <Text style={{ fontSize: 48, marginBottom: 20 }}>
+        {formatTime(elapsedTime)}
+      </Text>
+
+      {/* Buttons for controlling the stopwatch */}
+      <View style={{ flexDirection: "row" }}>
+        <Button title="Start" onPress={startStopwatch} />
+        <Button title="Stop" onPress={stopStopwatch} />
+        <Button title="Reset" onPress={resetStopwatch} />
+      </View>
     </View>
   );
-}
+};
 
-const styles = StyleSheet.create({});
+export default StopwatchScreen;
