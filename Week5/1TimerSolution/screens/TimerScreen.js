@@ -27,6 +27,13 @@ export default function TimerScreen() {
   const startTimer = () => {
     setIsRunning(true);
   };
+  const stopTimer = () => {
+    setIsRunning(false);
+  };
+  const resetTimer = () => {
+    setIsRunning(false);
+    setSecondsRemaining(0);
+  };
   //function to handle any changes for these input
   const handleInputChange = (text, unit) => {
     console.log(unit);
@@ -54,6 +61,12 @@ export default function TimerScreen() {
     newSecondsRemaining += inputValue * multiplier;
     setSecondsRemaining(newSecondsRemaining);
   };
+  const formatTime = (timeInSeconds) => {
+    const hours = Math.floor(timeInSeconds / 3600);
+    const minutes = Math.floor((timeInSeconds % 3600) / 60);
+    const seconds = timeInSeconds % 60;
+    return `${hours}:${minutes}:${seconds}`;
+  };
   return (
     <View>
       <Text>TimerScreen</Text>
@@ -71,8 +84,10 @@ export default function TimerScreen() {
           onChangeText={(text) => handleInputChange(text, "seconds")}
         ></TextInput>
       </View>
-      <Text>{secondsRemaining}</Text>
+      <Text>{formatTime(secondsRemaining)}</Text>
       <Button title="Start Timer" onPress={startTimer} />
+      <Button title="Stop Timer" onPress={startTimer} />
+      <Button title="Reset Timer" onPress={startTimer} />
     </View>
   );
 }
