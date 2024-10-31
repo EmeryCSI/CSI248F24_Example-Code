@@ -4,6 +4,7 @@ import { Ionicons } from "@expo/vector-icons";
 import DeviceScreen from "./screens/DeviceScreen";
 import LocationScreen from "./screens/LocationScreen";
 import StorageScreen from "./screens/StorageScreen";
+import CameraScreen from "./screens/CameraScreen";
 const Tab = createBottomTabNavigator();
 export default function App() {
   return (
@@ -25,6 +26,8 @@ export default function App() {
               iconName = focused ? "location" : "location-outline";
             } else if (route.name === "Storage") {
               iconName = focused ? "save" : "save-outline";
+            } else if (route.name === "Camera") {
+              iconName = focused ? "camera" : "camera-outline";
             }
             //Create an icon based on the iconName variable
             console.log(iconName);
@@ -35,6 +38,7 @@ export default function App() {
         <Tab.Screen name="Device" component={DeviceScreen} />
         <Tab.Screen name="Location" component={LocationScreen} />
         <Tab.Screen name="Storage" component={StorageScreen} />
+        <Tab.Screen name="Camera" component={CameraScreen} />
       </Tab.Navigator>
     </NavigationContainer>
   );
