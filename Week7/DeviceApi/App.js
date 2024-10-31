@@ -3,6 +3,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
 import DeviceScreen from "./screens/DeviceScreen";
 import LocationScreen from "./screens/LocationScreen";
+import StorageScreen from "./screens/StorageScreen";
 const Tab = createBottomTabNavigator();
 export default function App() {
   return (
@@ -22,6 +23,8 @@ export default function App() {
               iconName = focused ? "phone-portrait" : "phone-portrait-outline";
             } else if (route.name === "Location") {
               iconName = focused ? "location" : "location-outline";
+            } else if (route.name === "Storage") {
+              iconName = focused ? "save" : "save-outline";
             }
             //Create an icon based on the iconName variable
             console.log(iconName);
@@ -31,6 +34,7 @@ export default function App() {
       >
         <Tab.Screen name="Device" component={DeviceScreen} />
         <Tab.Screen name="Location" component={LocationScreen} />
+        <Tab.Screen name="Storage" component={StorageScreen} />
       </Tab.Navigator>
     </NavigationContainer>
   );
