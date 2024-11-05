@@ -1,12 +1,14 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, View, ScrollView } from "react-native";
+import { StyleSheet, View, ScrollView, TextInput } from "react-native";
 import {
   PaperProvider,
   MD3LightTheme,
   Surface,
   Text,
+  Button,
 } from "react-native-paper";
-
+import MyTextInput from "./components/MyTextInput";
+import MyCard from "./components/MyCard";
 //setup the theme
 //create a theme using the built in MD3Light theme
 //can modify to have my own values
@@ -40,6 +42,11 @@ function AppContent() {
           <Text variant="headlineMedium">React Native Paper Tutorial</Text>
           <Text variant="bodyLarge">A Material Design Component Library</Text>
         </Surface>
+        <MyTextInput label={"Name"} />
+        <Button mode="contained" onPress={() => console.log("Button Pressed")}>
+          Press Me
+        </Button>
+        <MyCard />
       </View>
     </ScrollView>
   );
