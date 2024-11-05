@@ -9,6 +9,9 @@ import {
 } from "react-native-paper";
 import MyTextInput from "./components/MyTextInput";
 import MyCard from "./components/MyCard";
+import MyModal from "./components/MyModal";
+import ThemeColors from "./components/ThemeColors";
+import { useState } from "react";
 //setup the theme
 //create a theme using the built in MD3Light theme
 //can modify to have my own values
@@ -34,6 +37,7 @@ export default function App() {
 }
 
 function AppContent() {
+  const [modalVisible, setModalVisible] = useState(false);
   return (
     <ScrollView style={styles.scrollView}>
       <View style={styles.container}>
@@ -47,6 +51,15 @@ function AppContent() {
           Press Me
         </Button>
         <MyCard />
+        <Button onPress={() => setModalVisible(true)} mode="outlined">
+          Show Modal
+        </Button>
+        <MyModal
+          visible={modalVisible}
+          onDismiss={() => setModalVisible(false)}
+        >
+          <ThemeColors />
+        </MyModal>
       </View>
     </ScrollView>
   );

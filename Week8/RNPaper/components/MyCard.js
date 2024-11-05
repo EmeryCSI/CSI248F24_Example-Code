@@ -15,6 +15,22 @@ export default function MyCard() {
         subtitle="Card Subtitle"
         left={LeftContent}
       />
+      <Card.Content>
+        <Text variant="titleLarge">Content Header</Text>
+        <Text variant="bodyMedium">Content Description</Text>
+      </Card.Content>
+      <Card.Cover source={{ uri: "https://picsum.photos/700" }} />
+      <Card.Actions>
+        <Button>Cancel</Button>
+        <Button>Submit</Button>
+        <Button
+          icon="camera"
+          mode="contained"
+          onPress={() => console.log("Camera Presses")}
+        >
+          Press Me
+        </Button>
+      </Card.Actions>
     </Card>
   );
 }
